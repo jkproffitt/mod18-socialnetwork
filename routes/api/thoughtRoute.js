@@ -8,19 +8,18 @@ const { getAllThoughts } = require('../../controllers/thoughtController.js');
 // TODO: addReaction,
 // TODO: deleteReaction
 
-//get all Thoughts and create user
-router.route('/').get(getAllThoughts).post(createThought);
+// //get all Thoughts and create user
+router.route('/').get(getAllThoughts);
+// .post(createThought);
 
-//get, update, delete Thought by id
-router
-	.route('/:id')
-	.get(getThoughtById)
-	.put(updateThought)
-	.delete(deleteThought);
+// //get, update, delete Thought by id
+// router
+// 	.route('/:id')
+// 	.get(getThoughtById)
+// 	.put(updateThought)
+// 	.delete(deleteThought);
 
-//add or remove add reaction
-router.route('/:thoughtId/reaction');
-    .post(addReaction)
-    .delete(deleteReaction);
+// //add or remove add reaction
+// router.route('/:thoughtId/reaction').post(addReaction).delete(deleteReaction);
 
 module.exports = router;

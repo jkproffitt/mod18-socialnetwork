@@ -16,6 +16,33 @@ const userController = {
 			res.status(500).json(err);
 		}
 	},
+
+	createUser: async (req, res) => {
+		try {
+			const user = await User.create(req.body);
+			res.json(user);
+		} catch (err) {
+			res.status(500).json(err);
+		}
+	},
+
+	updateUser: async (req, res) => {
+		try {
+			const user = await User.find(req.body);
+			res.json(user);
+		} catch (err) {
+			res.status(500).json(err);
+		}
+	},
+
+	deleteUser: async (req, res) => {
+		try {
+			const user = await User.create(req.body);
+			res.json(user);
+		} catch (err) {
+			res.status(500).json(err);
+		}
+	},
 };
 
 module.exports = userController;
