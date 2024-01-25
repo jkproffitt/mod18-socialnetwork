@@ -8,13 +8,6 @@ const {
 	addReaction,
 	deleteReaction,
 } = require('../../controllers/thoughtController.js');
-// TODO: build routes for getAllThoughts,
-// TODO: getThoughtById,
-// TODO: createThought,
-// TODO: updateThought,
-// TODO: deleteThought,
-// TODO: addReaction,
-// TODO: deleteReaction
 
 //get all Thoughts and create user
 router.route('/').get(getAllThoughts).post(createThought);

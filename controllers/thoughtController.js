@@ -1,5 +1,4 @@
-const { Thought, Reaction } = require('../models');
-const reactionSchema = require('../models/Reaction');
+const { Thought } = require('../models');
 
 module.exports = {
 	getAllThoughts: async (req, res) => {
@@ -22,16 +21,6 @@ module.exports = {
 		res.status(200).json(thought);
 	},
 
-	// async createThought({ body }, res) {
-	// 	const thought = await Thought.create(body);
-
-	// 	if (!thought) {
-	// 		return res
-	// 			.status(400)
-	// 			.json({ message: 'Unable to create thought' });
-	// 	}
-	// 	res.status(200).json(body);
-	// },
 	//Need thoughtTEXT for text
 	createThought: async (req, res) => {
 		try {
@@ -41,14 +30,6 @@ module.exports = {
 			res.status(400).json({ message: 'Unable to create thought' });
 		}
 	},
-
-	// async updateThought(req, res) {
-	// 	const thought = await Thought.findOneAndUpdate(
-	// 		{ _id: req.body.id },
-	// 		{ $thoughtText: `${req.body.thoughtText}` },
-	// 		{ new: true }
-	// 	);
-	// },
 
 	updateThought: async (req, res) => {
 		try {
@@ -76,13 +57,9 @@ module.exports = {
 			res.status(500).json(err);
 		}
 	},
-	// TODO: addReaction,
 
 	async addReaction(req, res) {
-		// console.log(req);
 		try {
-			// const react = await Reaction.create(req.body);
-			// console.log(react);
 			const reaction = await Thought.findOneAndUpdate(
 				{ _id: req.params.id },
 				{ $addToSet: { reactions: req.body } },
@@ -96,11 +73,9 @@ module.exports = {
 			}
 			res.json(reaction);
 		} catch (err) {
-			console.log(err);
 			res.status(500).json(err);
 		}
 	},
-	// TODO: deleteReaction 18 - CRUD subdoc ln 115
 
 	async deleteReaction(req, res) {
 		try {
