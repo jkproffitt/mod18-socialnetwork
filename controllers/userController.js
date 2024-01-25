@@ -1,9 +1,8 @@
 const { User } = require('../models');
 
 module.exports = {
-	async getAllUsers({ params }, res) {
+	async getAllUsers({ req }, res) {
 		const allUsers = await User.find({});
-
 		if (!allUsers) {
 			return res.status(400).json({ message: 'No Users Found' });
 		}
@@ -32,7 +31,7 @@ module.exports = {
 	createUser: async (req, res) => {
 		try {
 			const user = await User.create(req.body);
-			res.json(user);
+			res.status(200).json(user);
 		} catch (err) {
 			res.status(500).json(err);
 		}
@@ -41,7 +40,8 @@ module.exports = {
 	async updateUser(req, res) {
 		try {
 			const user = await User.findOneAndUpdate(
-				{ _id: req.body.id },
+				{ _id: req.params.id },
+				{ username: req.body.username, email: req.body.email },
 				{ new: true }
 			);
 
@@ -54,22 +54,10 @@ module.exports = {
 		}
 	},
 
-	// async updateUser(req, res) {
-	// 	const user = await User.findOneAndUpdate(
-	// 		{ _id: req.body.id },
-	// 		{ new: true }
-	// 	);
-
-	// 	if (!user) {
-	// 		return res.status(400).json({ message: 'No user exists' });
-	// 	}
-	// 	res.status(200).json(user);
-	// },
-
 	deleteUser: async (req, res) => {
 		try {
-			const user = await User.create(req.body);
-			res.json(user);
+			const user = await User.findOneAndDelete(req.params.id);
+			res.status(200).json(user);
 		} catch (err) {
 			res.status(500).json(err);
 		}
@@ -79,7 +67,8 @@ module.exports = {
 	async addFriend(req, res) {
 		try {
 			const user = await User.findOneAndUpdate(
-				{ _id: req.body.id },
+				{ _id: req.params.id },
+				{ $addToSet: { friends: req.body.id } },
 				{ new: true }
 			);
 
@@ -96,10 +85,10 @@ module.exports = {
 
 	async removeFriend(req, res) {
 		try {
-			const friend = User.findById(req.body.id);
+			// const friend = User.findById(req.body.id);
 			const user = await User.findOneAndUpdate(
-				{ _id: req.body.id },
-				{ $pull: { friends: friend } },
+				{ _id: req.params.id },
+				{ $pull: { friends: req.body.id } },
 				{ new: true }
 			);
 
