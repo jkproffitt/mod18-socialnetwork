@@ -1,7 +1,9 @@
-const { Thought } = require('../models');
+const { Thought, Reaction } = require('../models');
+const reactionSchema = require('../models/Reaction');
 
 module.exports = {
 	getAllThoughts: async (req, res) => {
+		console.log('here' + req);
 		try {
 			const thought = await Thought.find();
 			res.json(thought);
@@ -30,7 +32,7 @@ module.exports = {
 	// 	}
 	// 	res.status(200).json(body);
 	// },
-
+	//Need thoughtTEXT for text
 	createThought: async (req, res) => {
 		try {
 			const thought = await Thought.create(req.body);
@@ -50,8 +52,12 @@ module.exports = {
 
 	updateThought: async (req, res) => {
 		try {
-			const thought = await Thought.find(req.body);
-			res.json(thought);
+			const thought = await Thought.findOneAndUpdate(
+				{ _id: req.params.id },
+				{ thoughtText: `${req.body.thoughtText}` },
+				{ new: true }
+			);
+			res.status.json(thought);
 		} catch (err) {
 			res.status(500).json(err);
 		}
@@ -62,21 +68,24 @@ module.exports = {
 			const thought = await Thought.findOneAndDelete({
 				_id: req.params.id,
 			});
-			res.json(thought);
-
 			if (!thought) {
+				res.status(400).json({ message: 'no thought exisits' });
 			}
+			res.status(200).json(thought);
 		} catch (err) {
 			res.status(500).json(err);
 		}
 	},
 	// TODO: addReaction,
 
-	async addReaction({ params }, res) {
+	async addReaction(req, res) {
+		// console.log(req);
 		try {
+			// const react = await Reaction.create(req.body);
+			// console.log(react);
 			const reaction = await Thought.findOneAndUpdate(
-				{ _id: req.params.reactionId },
-				{ $addToSet: { responses: req.body } },
+				{ _id: req.params.id },
+				{ $addToSet: { reactions: req.body } },
 				{ runValidators: true, new: true }
 			);
 
@@ -85,19 +94,19 @@ module.exports = {
 					.status(404)
 					.json({ message: 'No Reaction with this id!' });
 			}
-
 			res.json(reaction);
 		} catch (err) {
+			console.log(err);
 			res.status(500).json(err);
 		}
 	},
 	// TODO: deleteReaction 18 - CRUD subdoc ln 115
 
-	async deleteReaction({ params }, res) {
+	async deleteReaction(req, res) {
 		try {
 			const reaction = await Thought.findOneAndUpdate(
-				{ _id: req.params.reactionId },
-				{ $addToSet: { responses: req.body } },
+				{ _id: req.params.id },
+				{ $pull: { reactions: req.body } },
 				{ runValidators: true, new: true }
 			);
 
