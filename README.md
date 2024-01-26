@@ -1,5 +1,7 @@
 # mod18-socialnetwork # 18 NoSQL: Social Network API
 
+[video link](https://drive.google.com/file/d/1k0rkMwUIa0i8CVrl5HtpPx_cVlST5rGI/view?usp=sharing)
+
 ## Your Task
 
 MongoDB is a popular choice for many social networks due to its speed with large amounts of data and flexibility with unstructured data. Over the last part of this course, you’ll use several of the technologies that social networking platforms use in their full-stack applications. Because the foundation of these applications is data, it’s important that you understand how to build and structure the API first.
@@ -39,6 +41,8 @@ The following animations show examples of the application's API routes being tes
 The following animation shows GET routes to return all users and all thoughts being tested in Insomnia:
 
 ![Demo of GET routes to return all users and all thoughts being tested in Insomnia.](./Assets/18-nosql-homework-demo-01.gif)
+http://localhost:3001/api/user
+http://localhost:3001/api/thought
 
 The following animation shows GET routes to return a single user and a single thought being tested in Insomnia:
 

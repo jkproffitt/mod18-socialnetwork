@@ -8,13 +8,6 @@ const {
 	addFriend,
 	removeFriend,
 } = require('../../controllers/userController.js');
-// TODO: build routes for getAllUsers,
-// TODO: getUserById,
-// TODO: createUser,
-// TODO: updateUser,
-// TODO: deleteUser,
-// TODO: addFriend,
-// TODO: removeFriend
 
 //get all users and create user
 router.route('/').get(getAllUsers).post(createUser);
