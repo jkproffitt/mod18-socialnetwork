@@ -1,4 +1,4 @@
-# mod18-socialnetwork # 18 NoSQL: Social Network API
+# mod18-socialnetwork 
 
 [video link 1](https://drive.google.com/file/d/1k0rkMwUIa0i8CVrl5HtpPx_cVlST5rGI/view?usp=sharing)
 [video link 2](https://drive.google.com/file/d/1LIbhDnPjj9yJXKgApb4xIsT1B8259dqk/view?usp=sharing)
