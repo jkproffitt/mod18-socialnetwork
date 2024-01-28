@@ -1,6 +1,7 @@
 # mod18-socialnetwork # 18 NoSQL: Social Network API
 
-[video link](https://drive.google.com/file/d/1k0rkMwUIa0i8CVrl5HtpPx_cVlST5rGI/view?usp=sharing)
+[video link 1](https://drive.google.com/file/d/1k0rkMwUIa0i8CVrl5HtpPx_cVlST5rGI/view?usp=sharing)
+[video link 2](https://drive.google.com/file/d/1LIbhDnPjj9yJXKgApb4xIsT1B8259dqk/view?usp=sharing)
 
 Please note that I asked the profession specifically about using postman instead of insomnia in the past and have been given the ok on this activity as well as previous other activities. 
 
